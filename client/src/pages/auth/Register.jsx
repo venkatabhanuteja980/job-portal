@@ -44,18 +44,10 @@ const Register = () => {
 
       alert('Registration Successful!');
     } catch (err) {
-  console.error('REGISTER ERROR:', err);
+  console.log("FULL ERROR OBJECT");
+  console.dir(err);
 
-  console.log('FULL RESPONSE DATA:');
-  console.log(err?.response?.data);
-
-  alert(
-    JSON.stringify(
-      err?.response?.data,
-      null,
-      2
-    )
-  );
+  alert("Check Console");
 }
     finally {
       setLoading(false);
