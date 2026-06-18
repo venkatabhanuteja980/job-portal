@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-50: #f0f7ff;
+  --color-primary-100: #e0effe;
+  --color-primary-200: #bae0fd;
+  --color-primary-300: #7cc7fc;
+  --color-primary-400: #38aef9;
+  --color-primary-500: #0ea5e9;
+  --color-primary-600: #0a66c2; /* LinkedIn Jobs Blue */
+  --color-primary-700: #0a5299;
+  --color-primary-800: #0b457e;
+  --color-primary-900: #0f3c6a;
+  --color-primary-950: #0a2545;
+
+  --color-dark-bg: #0f172a;
+  --color-dark-card: #1e293b;
+  --color-dark-border: #334155;
+  --color-dark-text: #f8fafc;
+  --color-dark-text-muted: #94a3b8;
+
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-display: "Outfit", var(--font-sans);
+}
+
+@layer base {
+  html, body {
+    @apply h-full font-sans antialiased bg-slate-50 text-slate-800 transition-colors duration-200;
+  }
+  
+  html.dark, body.dark {
+    @apply bg-slate-950 text-slate-100;
+  }
+  
+  /* Accessibility focus ring */
+  *:focus-visible {
+    @apply outline-none ring-2 ring-primary-600 ring-offset-2 dark:ring-offset-slate-900;
+  }
+}
