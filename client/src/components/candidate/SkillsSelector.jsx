@@ -18,18 +18,34 @@ export const SkillsSelector = ({
   // Fetch all available skills from db
   useEffect(() => {
     const fetchSkills = async () => {
-      setLoading(true);
-      try {
-        const response = await publicApi.getSkills();
-        // Check if skills is directly in response.data or data.skills
-        const skillsList = response.data || [];
-        setDbSkills(skillsList.filter(sk => sk.isActive !== false));
-      } catch (err) {
-        console.error('Failed to load skills:', err);
-      } finally {
-        setLoading(false);
-      }
-    };
+  setLoading(true);
+
+  try {
+    const response = await publicApi.getSkills();
+
+    console.log("Skills API Response:", response);
+
+    const skillsList =
+      response?.data?.data?.skills ||
+      response?.data?.skills ||
+      response?.data ||
+      [];
+
+    if (Array.isArray(skillsList)) {
+      setDbSkills(
+        skillsList.filter((sk) => sk.isActive !== false)
+      );
+    } else {
+      console.error("Skills data is not an array:", skillsList);
+      setDbSkills([]);
+    }
+  } catch (err) {
+    console.error("Failed to load skills:", err);
+    setDbSkills([]);
+  } finally {
+    setLoading(false);
+  }
+};
     fetchSkills();
   }, []);
 

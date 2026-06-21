@@ -76,7 +76,7 @@ export const Navbar = () => {
           <div className="hidden md:flex md:items-center md:gap-4">
             <ThemeToggle />
 
-            {isAuthenticated ? (
+            {isAuthenticated  && user? (
               /* User Authenticated Dropdown */
               <>
               <NotificationBell />
@@ -87,7 +87,11 @@ export const Navbar = () => {
                   aria-expanded={dropdownOpen}
                   aria-haspopup="true"
                 >
-                  <Avatar name={user.fullName} url={user.avatar?.url} size="sm" />
+                 <Avatar
+  name={user?.fullName || "Guest"}
+  url={user?.avatar?.url}
+  size="sm"
+/>
                 </button>
 
                 {dropdownOpen && (
@@ -165,7 +169,7 @@ export const Navbar = () => {
             </Link>
           ))}
           <div className="border-t border-slate-100 pt-2 pb-1 dark:border-dark-border">
-            {isAuthenticated ? (
+            {isAuthenticated && user ? (
               <div className="space-y-1">
                 <div className="px-3 py-2 flex items-center gap-3">
                   <Avatar name={user.fullName} url={user.avatar?.url} size="sm" />
